@@ -1,6 +1,6 @@
 <?php
 namespace  Multiple\Index\Controller;
-use Phalcon\Mvc\Controller;
+use \Phalcon\Mvc\Controller;
 
 /**
 * 
@@ -16,8 +16,24 @@ class ViewController extends Controller
 
 	public function indexAction($Id)
 	{
-	    $this->view->Id = $Id;
+		$this->view->Id = $Id;
 	}
+
+	public function reuseAction($Id)
+	{
+		$this->view->pick("Index/index");
+   		$this->view->Id = $Id;
+	}
+
+	public function validateAction($id, $string, $email)
+	{
+		$filter = new \Phalcon\Filter();
+		 $price = $this->request->getPost("price", "double");
+		echo '<br />' . $filter->sanitize($id, 'int');
+		echo '<br />' . $filter->sanitize($string, 'string');
+		echo '<br />' . $filter->sanitize($email, 'email');
+	}
+
 }
 
 

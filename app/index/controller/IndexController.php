@@ -113,7 +113,7 @@ class IndexController extends BaseController
 
 	public function updateAction()
 	{
-
+		
 	}
 
 	public function bindAction()
