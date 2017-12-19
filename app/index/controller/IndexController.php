@@ -31,6 +31,7 @@ class IndexController extends BaseController
 
     public function indexAction()
     {
+    	$this->view->setVar('test', 'hello world');
     	$this->session->set('username', 'phalcon');
         echo "<h1>Hello insdex!</h1>";
     }
