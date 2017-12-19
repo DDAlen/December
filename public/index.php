@@ -70,7 +70,6 @@ $di->set(
             'action' => 3,  
             'params' => 4,  
         )); 
-
         return $router;
     }
 );

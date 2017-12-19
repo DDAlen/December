@@ -78,7 +78,7 @@ class IndexController extends BaseController
 	    //执行操作
 	    $ret = $User->save();
 
-	    //对结果进行验证
+	    //save()方法返回一个布尔值，表示存储的数据是否成功。
 	    if ($ret) {
 	        echo "写入数据成功";
 	    } else {
@@ -96,5 +96,69 @@ class IndexController extends BaseController
 		var_dump(PhalconUser::find("name like 'phalcon%'")->toArray());
 		echo '<h1>indexController/select!</h1>';	
 	}
+
+	public function testLineAction()
+	{
+		$rs = PhalconUser::query()
+		    ->where("name = :name:")
+		    ->andWhere("phone  = 13011111111")
+		    ->bind(array("name" => "phalcon"))
+		    ->execute();
+
+		foreach ($rs as $user) {
+		    echo $user->name, "\n";
+		    echo '</br>';
+		}
+	}
+
+	public function updateAction()
+	{
+
+	}
+
+	public function bindAction()
+	{
+		$params = ['name' => 'phalcon', 1 => '13011111111'];
+		$res = PhalconUser::find(
+			  array(
+			  		'name  = :name: AND phone = ?1',
+			  		'bind' => $params,
+			  )
+		);
+		var_dump($res->toArray());
+	}
+
+	//多个绑定，不能忘记括号、
+	public function bindMoreAction()
+	{
+		$array = ['phalcon', 'phalcon2'];
+		$res = PhalconUser::find(
+			array(
+				'name in ({letter:array})',
+				'bind' => ['letter' => $array],
+			)
+		);
+		var_dump($res->toArray());
+	}
+
+	public function sumAction($phone = 'phalcon')
+	{
+		$array = ['phalcon', 'phalcon2'];;
+		$sum = PhalconUser::sum(
+		    array(
+		        "column"     => "phone",
+		        "conditions" => "name in ({letter:array})",
+		        'bind'  	 => ['letter' => $array],
+		    )
+		);
+
+		$min = PhalconUser::minimum(array(
+				'column' => 'phone'
+		));
+
+		echo '</br>' . $sum;
+		echo '</br>' . $min;
+	}
+
 }
 ?>
