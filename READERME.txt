@@ -1,6 +1,14 @@
-�������ģ�塣
-1����˾����ģ�塣
-2����ģ��Ļ���Core ģ�����ע�������ռ䣿
-3��voģ�����棬ע���Զ���ĺ���	https://www.cnblogs.com/peng-jun/p/6903367.html
-4��У��Ļ������У�����ݿ��Ѿ����ڵģ�У����������д
-5�� tp5����װ�����
+今天加了模板。
+1，公司用上模板。
+2，多模板的话，Core 模块如何注册命名空间？
+3，vo模板引擎，注册自定义的函数	https://www.cnblogs.com/peng-jun/p/6903367.html
+4，校验的话，如何校验数据库已经存在的？校验规则如何书写
+5， tp5，封装插件。
+
+
+
+------------------------
+12.20 
+------------------------
+position: fixed 与 absoult reltive 的区别
+volt模板里面 JavaScript不用 加别的标签，例如 {literal} 之类的就可以直接写

@@ -1,6 +1,7 @@
 <?php
 namespace  Multiple\Index\Controller;
 use \Phalcon\Mvc\Controller;
+use Phalcon\MVC\View;
 
 /**
 * 
@@ -11,7 +12,7 @@ class ViewController extends Controller
 	public function initialize()
 	{
 		//this−>view−>setTemplateBefore(′common′)和this->view->setTemplateAfter(‘common’)可以控制渲染顺序
-		$this->view->setTemplateBefore('common'); 
+		$this->view->setTemplateAfter('common'); 
 	}
 
 	public function indexAction($Id)
@@ -34,6 +35,10 @@ class ViewController extends Controller
 		echo '<br />' . $filter->sanitize($email, 'email');
 	}
 
+	public function disableAction()
+	{
+		$this->view->disableLevel(View::LEVEL_MAIN_LAYOUT);
+	}
 }
 
 
