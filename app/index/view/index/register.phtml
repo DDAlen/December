@@ -1,0 +1,51 @@
+
+	<div style="width: 100%;text-align: right;">
+	   <a href="{{login}}">登录</a>
+	</div>
+
+	<div style="text-align: center;align-content: center;">
+	 	<form action= "{{register}}" method="post" onsubmit="return validate()">
+			账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：<input type="text" name="userName" value="">		<br />
+			<div>
+				<span></span>
+			</div>
+			密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;保：<input type="text" name="question" value="">		<br />
+			答&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;案：<input type="text" name="answer" value="">			<br />
+			密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：<input type="password" name="password" value="">		<br />	
+			密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：<input type="password" name="password2" value="">		<br />	
+
+			<br />
+			<input id='login'  type="submit" value="注册">
+			<input type="button" value="取消" onclick="javascript :history.back(-1);">
+		</form>
+	</div>
+<script type="text/javascript">
+	var userNamePass = false;
+	$(function(){
+		$("input[name='userName']").blur(function(){
+			if ($(this).val().trim().length == 0)
+			{
+				$('span').html('');
+				userNamePass = false;
+				return ;
+			}
+
+			$.get('/index/user/validateUserName/' + $(this).val(), function(result){
+					console.log(result);
+				if (result == '"SUCCESS"') {
+					userNamePass = true;
+					$('span').html('恭喜，该用户名可用');
+				} else {
+					userNamePass = false;
+					$('span').html('该用户名已经存在');
+				}
+			});
+		});
+	});
+
+	function validate()
+	{
+		return userNamePass;
+	}
+
+</script>

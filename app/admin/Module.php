@@ -21,6 +21,7 @@ class Module implements ModuleDefinitionInterface
             [
                 'Multiple\Admin\Controller' => '../app/admin/controller/',
                 'Multiple\Admin\Model'      => '../app/admin/model/',
+                'Multiple\Admin\Logic'      => '../app/admin/logic/',
             ]
         );
 

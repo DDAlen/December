@@ -26,10 +26,13 @@ class IndexController extends \Multiple\Index\Controller\BaseController
 			
 	}
 
-	//注册页面
+	//注册页面  这种方法可以没有吗？
 	public function registerAction()
 	{
-
+		$this->view->setVars([
+			'login' => '/index/index/index',
+			'register'  => '/index/user/registerUser',
+		]);
 	}
 
 	//忘记密码页面

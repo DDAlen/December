@@ -20,6 +20,7 @@ class Module implements ModuleDefinitionInterface
             [
                 'Multiple\Index\Controller' => '../app/index/controller/',
                 'Multiple\Index\Model'      => '../app/index/model/',
+                'Multiple\Index\Logic'      => '../app/index/logic/',
             ]
         );
 
@@ -61,16 +62,5 @@ class Module implements ModuleDefinitionInterface
             ));
             return $view;
         });
-        // Registering the view component
-        // $di->set(
-        //     'view',
-        //     function () {
-        //         $view = new View();
-
-        //         $view->setViewsDir('../app/index/view/'); 
-
-        //         return $view;
-        //     }
-        // );
     }
 }
