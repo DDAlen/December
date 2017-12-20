@@ -12,3 +12,4 @@
 ------------------------
 position: fixed 与 absoult reltive 的区别
 volt模板里面 JavaScript不用 加别的标签，例如 {literal} 之类的就可以直接写
+实现tp框架下的 自动跳转功能

@@ -16,20 +16,32 @@ class UserController extends Controller
 	public function registerUserAction()
 	{
 		if (!$this->request->isPost()) {
-			$this->response->redirect("/admin/index/index"); 
+			$this->response->redirect("/index/index/index"); 
 		}
 		
 		$data = [
 			'name' => $this->request->getPost('userName', 'string'),
-			'password' => $this->request->getPost('password', 'string'),
+			'phone' => $this->request->getPost('phone', 'string'),
+			'Password' => $this->request->getPost('password', 'string'),
 			'password2' => $this->request->getPost('password2', 'string'),
 		];
 
-		$user = new \Multiple\Index\Logic\UserController();
-		if ($user->registerUser($data)) {
-			var_dump('注册成功');
+		$validate = new \Multiple\Index\Validate\RegisterValidate();
+		$messages = $validate->validate($data);
+		if (count($messages))
+		{
+			foreach ($messages as $message) {
+        		echo $message, '<br>';
+   			}
+   			var_dump('注册失败');
+   			return;
 		}
-		var_dump('注册失败');
+
+		$user = new \Multiple\Index\Logic\UserController();
+		if (!$user->registerUser($data)) {
+			$this->response->redirect("/index/index/index"); 
+		}
+		$this->response->redirect("/index/index/index"); 		
 	}
 
 	//ajax验证用户名

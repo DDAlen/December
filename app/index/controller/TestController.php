@@ -1,6 +1,7 @@
 <?php
 namespace Multiple\Index\Controller;
 use \Phalcon\Mvc\Controller;
+use Multiple\Index\Model\PhalconUser;
 
 class TestController extends Controller 
 {

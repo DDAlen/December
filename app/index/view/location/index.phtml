@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>等待ING</title>
+</head>
+<body>
+	<div style="text-align: center;align-content: center;">
+		<h1>{{ message }}</h1>
+	</div>
+	<div>
+		剩余 <span id='wait'>{{time}}</span> 秒,自动 <a href="{{ url }}" id='href'>跳转</a>	
+	</div>
+</body>
+<script type="text/javascript">
+	window.onload = function(){
+		var wait = document.getElementById('wait');
+		var href = document.getElementById('href').href;
+		var interval = setInterval(function(){
+	        var time = --wait.innerHTML;
+	        if(time <= 0) {
+	            location.href = href;
+	            clearInterval(interval);
+	        };
+	    }, 1000);
+	};
+
+</script>
+</html>
