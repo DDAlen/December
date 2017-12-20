@@ -47,7 +47,8 @@ class IndexController extends BaseController
     {
     	$this->flash->error("当前用户尚无访问权限!");
 
-	    // 跳转到指定的控制器和方法
+		$response->redirect("Request/Index");       
+	    // 跳转到指定的控制器和方法 之后的代码一样会执行
 	    return $this->dispatcher->forward(array(
 	        "controller" => "index",
 	        "action"     => "test",
@@ -112,9 +113,31 @@ class IndexController extends BaseController
 		}
 	}
 
+	public function updateUserAction()
+	{
+		$user = PhalconUser::findFirst(1);
+		$user->phone = '111111';
+		return $user->save() ? '成功' : '失败';
+	}
+
 	public function updateAction()
 	{
-		
+		//这种方式会把其余的字段覆盖点
+		$user = new PhalconUser();
+		$user->id = 1;
+		$user->name = 'ceshi';
+		$res = $user->save();
+		if ($res)
+		{
+			return '成功';
+		}
+		else
+		{
+			 echo "写入数据库失败了";
+	        foreach ($User->getMessages() as $message) {
+	            echo $message->getMessage(), "<br/>";
+	        }
+		}
 	}
 
 	public function bindAction()

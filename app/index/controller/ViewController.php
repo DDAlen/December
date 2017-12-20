@@ -28,7 +28,7 @@ class ViewController extends Controller
 	public function validateAction($id, $string, $email)
 	{
 		$filter = new \Phalcon\Filter();
-		 $price = $this->request->getPost("price", "double");
+		 $price = $this->request->get("price", "double");
 		echo '<br />' . $filter->sanitize($id, 'int');
 		echo '<br />' . $filter->sanitize($string, 'string');
 		echo '<br />' . $filter->sanitize($email, 'email');
