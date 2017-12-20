@@ -54,7 +54,7 @@ $di->setShared('view', function (){
                 //模板是否实时编译
                 'compileAlways' => false,
                 //模板编译目录
-                'compiledPath' => ROOT_PATH . '/app'
+                'compiledPath' => ROOT_PATH . 'runtime/cache/'
             ));
             return $volt;
         },
