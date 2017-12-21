@@ -36,6 +36,19 @@ class TestController extends Controller
         echo "<h1>Hello insdex!</h1>";
     }
 
+    //过滤，通过filter 返回符合判断条件的数据
+    public function filterAction()
+    {
+    	$customers = PhalconUser::find()->filter(function($customer) {
+		    if($customer->id > 1) {
+		    	return $customer;
+		    }
+		});
+    	foreach ($customers as $key => $value) {
+    		echo $value->name . '<br />';
+    	}
+    }
+
     public function testAction($first, $second, $third = 'phalconTest')
     {	
     	$this->echoEx($first);

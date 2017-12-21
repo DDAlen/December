@@ -6,6 +6,9 @@ class IndexController extends \Multiple\Index\Controller\BaseController
 {
 	public function indexAction()
 	{
+		$user = new \logic\user\User();
+		$user->index();die;
+
 		$this->view->setVars([
 			'login' => '/index/index/loginIn',
 			'register'  => '/index/index/register',
@@ -39,7 +42,7 @@ class IndexController extends \Multiple\Index\Controller\BaseController
 			return $this->dispatcher->forward(array(
 		        "controller" => "location",
 		        "action" => "index",
-		        'params'	 => ['/index/test/bind', '登录成功'],
+		        'params'	 => ['/index/main/index', '登录成功'],
 	   		));
 		}
 

@@ -12,6 +12,15 @@ define('DS', DIRECTORY_SEPARATOR);
 defined('APP_PATH') or define('APP_PATH', dirname($_SERVER['SCRIPT_FILENAME']) . DS);
 defined('ROOT_PATH') or define('ROOT_PATH', dirname(realpath(APP_PATH)) . DS);
 
+//注册自动加载
+$loader = new \Phalcon\Loader();
+$loader->registerNamespaces(
+        [
+            'logic' => ROOT_PATH .'logic' . DS,
+        ]
+);
+$loader->register();
+
 // 读取配置
 $config = new ConfigPhp(ROOT_PATH . str_replace('\\', DS, "app/Config/config.php"));
 $di = new FactoryDefault();
@@ -70,6 +79,7 @@ $di->set(
             'action' => 3,  
             'params' => 4,  
         )); 
+
         return $router;
     }
 );

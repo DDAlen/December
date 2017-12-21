@@ -5,5 +5,28 @@
 </div>
 
 <div>
-	
+	<ul>
+		<li style="list-style-type: none;"><a href="/index/book/addBook" style="margin-left: -20px;">添加目录</a></li>
+		<li style="list-style-type: none;"><a onclick="addBook()" style="margin-left: -20px;">写文章</a></li>
+	</ul>
 </div>
+
+<div id='addBook' style="display: none;">
+	<form method="post" onsubmit="return validate()">
+		<input type="button" name="" value="取消">
+		<input type="button" name="" value="取消">
+	</form>
+</div>
+
+
+<script type="text/javascript">
+	function addBook()
+	{
+		$('#addBook').show();
+	}
+
+	function validate()
+	{
+		return true;
+	}
+</script>
