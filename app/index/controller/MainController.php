@@ -3,7 +3,7 @@ namespace Multiple\Index\Controller;
 /**
 * 
 */
-class MainController extends \Phalcon\MVC\Controller
+class MainController extends ControllerBase
 {
 
 	public function initialize()
@@ -13,9 +13,11 @@ class MainController extends \Phalcon\MVC\Controller
 		}
 	}
 
+	//主页面
 	public function indexAction()
 	{
-		echo 2;
+		$book = new \logic\user\Book();
+		$this->assign('catalogs', $book->getUserCatalog($this->session->get('userId')));
 	}
 }
 ?>

@@ -2,13 +2,11 @@
 namespace Multiple\Index\Controller;
 use \Multiple\Index\Model\PhalconUser;
 
-class IndexController extends \Multiple\Index\Controller\BaseController 
+class IndexController extends ControllerBase
 {
 	public function indexAction()
 	{
-		$user = new \logic\user\User();
-		$user->index();die;
-
+		$this->session->destroy();
 		$this->view->setVars([
 			'login' => '/index/index/loginIn',
 			'register'  => '/index/index/register',
@@ -21,6 +19,7 @@ class IndexController extends \Multiple\Index\Controller\BaseController
 	public function loginOutAction()
 	{
 		$this->session->destroy();
+		return $this->refreshUrl('/index/index/index', '退出登录成功');
 	}
 
 	//登录操作
@@ -36,21 +35,15 @@ class IndexController extends \Multiple\Index\Controller\BaseController
 			'passwd' => md5($this->request->getPost('userPassword', 'string')),
 		];
 
-		$validate = new \Multiple\Index\Logic\UserController();
-		if ($validate->validateUserLogin($data)) 
+		$validate = new \logic\user\User();
+		$id = $validate->validateUserLogin($data);
+		if ($id > 0) 
 		{
-			return $this->dispatcher->forward(array(
-		        "controller" => "location",
-		        "action" => "index",
-		        'params'	 => ['/index/main/index', '登录成功'],
-	   		));
+			$this->session->set('userId', $id);
+			return $this->refreshUrl('/index/main/index', '登录成功');
 		}
-
-		echo '<script type="text/javascript">alert(\'账号或密码错误\')</script>';
-		return $this->dispatcher->forward(array(
-		        "controller" => "index",
-		        "action"     => "index",
-   		));
+			
+		return $this->refreshUrl('/index/index/index', '账号或密码错误');
 	}
 
 	//注册页面  这种方法可以没有吗？

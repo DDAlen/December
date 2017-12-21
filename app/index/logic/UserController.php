@@ -42,11 +42,11 @@ class UserController extends Controller
 			  		'bind' => $data,
 			  )
 		);
+
 		if (empty($res->toArray()) || count($res->toArray()) > 1)
 		{
 			return false;
 		}
-
 		$this->session->set('userId', $res->toArray()[0]['id']);
 		return true;
 	}

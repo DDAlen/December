@@ -20,8 +20,6 @@ class Module implements ModuleDefinitionInterface
             [
                 'Multiple\Index\Controller' => '../app/index/controller/',
                 'Multiple\Index\Model'      => '../app/index/model/',
-                'Multiple\Index\Logic'      => '../app/index/logic/',
-                'Multiple\Index\Validate'   => '../app/index/validate',
             ]
         );
 

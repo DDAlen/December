@@ -1,32 +1,104 @@
 
 
 <div>
-	<h1>主页面index</h1>
+	<h1>main主页面index</h1>
 </div>
 
-<div>
+<div style="float: left;border: 1px solid red;height: 15%">
 	<ul>
-		<li style="list-style-type: none;"><a href="/index/book/addBook" style="margin-left: -20px;">添加目录</a></li>
 		<li style="list-style-type: none;"><a onclick="addBook()" style="margin-left: -20px;">写文章</a></li>
+		<li style="list-style-type: none;"><a onclick="showBook()" style="margin-left: -20px;">看文章</a></li>
+		<li style="list-style-type: none;"><a href="/index/index/loginOut" style="margin-left: -20px;">退出</a></li>
 	</ul>
 </div>
 
-<div id='addBook' style="display: none;">
+<div style="float: left;border: 1px solid red;width: 70%;text-align: center;align-content: center;height: 15%">
+		<form method="post" action="/index/Catalog/addCatalog">
+			<table align="center">
+				<tr>
+					<td><span>上级结构</span></td>
+					<td>
+						<select name="catalog_id">
+							<option value=0>请选择</option>
+							{% for catalog in catalogs %}
+							<option value= {{catalog['catalog_id']}}>{{catalog['catalog_name']}}</option>
+							{% endfor %}
+						</select>
+					</td>
+				</tr>
+
+				<tr>
+					<td><span>目录名</span></td>
+					<td>
+						<input type="text" name="catalog_name">
+					</td>
+				</tr>
+				<tr>
+					<td  style="column-span: 2;text-align: center;align-content: center;">
+						<input type="submit" name="" value="提交">
+					</td>		
+				</tr>
+			</table>
+		</form>
+		
+</div>
+<div class="clear"></div>
+
+<div id='addBook' style="display: none;border: 1px solid red;text-align: center;height: 40%;align-content: center;">
 	<form method="post" onsubmit="return validate()">
-		<input type="button" name="" value="取消">
+		<table align="center" >
+			<tr>
+				<td>
+					<span>目录：</span>
+				</td>
+				<td>
+					<select name="catalog">
+						{% for catalog in catalogs %}
+						<option value= {{catalog['catalog_id']}}>{{catalog['catalog_name']}}</option>
+						{% else %}
+						<option value=0>请选择</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+
+			<tr>
+				<td><span>标题：</span></td>
+				<td><input type="text" name="title"></td>
+			</tr>
+			<tr>
+				<td><span>内容：</span></td>
+				<td><textarea rows="10" cols="20" name="content"></textarea>	<br /></td>
+			</tr>
+		</table>
+		<input type="submit" name="" value="确定">
 		<input type="button" name="" value="取消">
 	</form>
 </div>
 
-
+<div id='showBook' style="display: none;border: 1px solid red;text-align: center;height: 40%;align-content: center;">
+	sadsadsdas
+</div>
 <script type="text/javascript">
 	function addBook()
 	{
 		$('#addBook').show();
+		$('#showBook').hide();
 	}
 
 	function validate()
 	{
 		return true;
+	}
+
+	function showBook()
+	{
+		$('#addBook').hide(); 
+		$('#showBook').show();
+	}
+
+	function addCatalog()
+	{
+
 	}
 </script>

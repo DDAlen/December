@@ -101,6 +101,8 @@ $application->registerModules(
     ]
 );
 
+require ROOT_PATH . DS . 'app' . DS . 'common' . DS . 'ControllerBase.php';
+
 try {
     // Handle the request
     $response = $application->handle();
