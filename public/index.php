@@ -51,7 +51,7 @@ $di->set(
 
         $router->notFound(array(  
             'module' => 'index',  
-            'controller' => 'index',  
+            'controller' => 'error',  
             'action' => 'index',  
         ));  
 

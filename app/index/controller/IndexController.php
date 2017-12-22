@@ -6,7 +6,6 @@ class IndexController extends ControllerBase
 {
 	public function indexAction()
 	{
-		$this->session->destroy();
 		$this->view->setVars([
 			'login' => '/index/index/loginIn',
 			'register'  => '/index/index/register',

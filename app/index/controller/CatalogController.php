@@ -15,11 +15,12 @@ class CatalogController extends ControllerBase
 
 		$data = [
 			'parent_id' => $this->request->getPost('catalog_id', 'int'),
-			'catalog_name' => $this->request->getPost('catalog_name', 'string'),
+			'catalog_name' => trim($this->request->getPost('catalog_name', 'string')),
 		];
 
-		$book = \logic\user\Book();
-
+		$book = new \logic\user\Book();
+		$result = $book->addUserCatalog($this->session->get('userId'), $data);
+		return $this->refreshUrl('/index/main/index', $result);
 	}
 }
 ?>

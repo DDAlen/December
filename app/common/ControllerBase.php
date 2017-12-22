@@ -29,7 +29,7 @@ class ControllerBase extends Controller
 			'message' => $message,
 			'time'    => $filte->sanitize($time, 'int'),
 		]);
-		$this->view->pick("location/index");
+		return $this->view->pick("location/index");
 	}
 }
 
